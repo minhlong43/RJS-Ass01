@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 // import { Media } from "reactstrap";
-import {
-  Card,
-  CardImg,
-  CardImgOverlay,
-  CardText,
-  CardBody,
-  CardTitle,
-} from "reactstrap";
+import { Card, CardBody, CardTitle } from "reactstrap";
 
 class Menu extends Component {
   constructor(props) {
@@ -26,10 +19,13 @@ class Menu extends Component {
     if (dish != null)
       return (
         <Card>
-          <CardImg top src={dish.image} alt={dish.name} />
           <CardBody>
-            <CardTitle>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
+            <b>Họ và tên: {dish.name}</b>
+            <p>Ngày sinh: {dish.doB}</p>
+            <p>Ngày vào công ty: {dish.startDate}</p>
+            <p>Phòng ban: {dish.numberOfStaff}</p>
+            <p>Số ngày nghỉ còn lại: {dish.annualLeave}</p>
+            <p>Số ngày đã làm thêm: {dish.overTime}</p>
           </CardBody>
         </Card>
       );
@@ -40,12 +36,11 @@ class Menu extends Component {
     const menu = this.props.dishes.map((dish) => {
       return (
         <div className="col-12 col-md-5 m-1">
-          <Card key={dish.id} onClick={() => this.onDishSelect(dish)}>
-            <CardImg width="100%" src={dish.image} alt={dish.name} />
-            <CardImgOverlay>
+          <ul key={dish.id} onClick={() => this.onDishSelect(dish)}>
+            <li className="card">
               <CardTitle>{dish.name}</CardTitle>
-            </CardImgOverlay>
-          </Card>
+            </li>
+          </ul>
         </div>
       );
     });
